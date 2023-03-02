@@ -1,0 +1,319 @@
+.Scan_qna_writer_inner {
+  height: 101%;
+  min-width: 1159px;
+  margin-top: 10px;
+  position: relative;
+  display: flex;
+}
+.Scan_qna_writer_file_viewer {
+  position: absolute;
+  opacity: 0;
+  overflow: hidden;
+}
+/* 왼쪽 박스*/
+.Scan_qna_writer_left {
+  height: 100%;
+  width: 40%;
+  background-color: #f9f9f9;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  margin-right: 25px;
+  padding: 0 5px;
+}
+.Scan_qna_writer_left_con1 table {
+  margin: 0 5px;
+}
+.Scan_qna_writer_left_con1 table tr td {
+  width: 110px;
+  height: 53px;
+}
+.Scan_qna_writer_table_column_title {
+  font-size: 17px;
+  /* color: gray; */
+}
+.Scan_qna_writer_table_row_title {
+  font-size: 25px;
+  font-weight: 700;
+  border-right: 2px dotted #d4d4d4;
+}
+.Scan_qna_writer_table_file {
+  border: 1px solid gray;
+  margin: 0 15px;
+  border-radius: 20px;
+  font-size: 16px;
+  padding: 4px;
+  cursor: pointer;
+  font-weight: 700;
+}
+/* con1 테이블 툴팁*/
+.table_tool_tipA_1,
+.table_tool_tipA_2,
+.table_tool_tipB_1,
+.table_tool_tipB_2,
+.table_tool_tipC_1,
+.table_tool_tipC_2,
+.table_tool_tipD_1,
+.table_tool_tipD_2,
+.table_tool_tipE_1,
+.table_tool_tipE_2 {
+  display: none;
+  position: absolute;
+  background-color: #1c2b55;
+  border-radius: 10px;
+  padding: 12px;
+  z-index: 1;
+  color: #d4d4d4;
+  font-size: 12px;
+  top: 115px;
+  left: 140px;
+  text-align: left;
+  /* 줄바꿈 */
+  white-space: pre-wrap;
+}
+.table_tool_tipA_1:after,
+.table_tool_tipA_2:after,
+.table_tool_tipB_1:after,
+.table_tool_tipB_2:after,
+.table_tool_tipC_1:after,
+.table_tool_tipC_2:after,
+.table_tool_tipD_1:after,
+.table_tool_tipD_2:after,
+.table_tool_tipE_1:after,
+.table_tool_tipE_2:after {
+  border-top: 0px solid transparent;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 10px solid #1c2b55;
+  content: "";
+  position: absolute;
+  top: -10px;
+  left: 28px;
+}
+.table_tool_tipA_2 {
+  left: 252px;
+}
+.table_tool_tipB_1 {
+  top: 170px;
+}
+.table_tool_tipB_2 {
+  top: 170px;
+  left: 252px;
+}
+.table_tool_tipC_1 {
+  top: 225px;
+}
+.table_tool_tipC_2 {
+  top: 225px;
+  left: 252px;
+}
+.table_tool_tipD_1 {
+  top: 280px;
+}
+.table_tool_tipD_2 {
+  top: 280px;
+  left: 252px;
+}
+.table_tool_tipE_1 {
+  top: 335px;
+}
+.table_tool_tipE_2 {
+  top: 335px;
+  left: 252px;
+}
+/* 툴팁 클릭 시 */
+.Scan_qna_writer_left_con1 .A_1:hover ~ .table_tool_tipA_1,
+.Scan_qna_writer_left_con1 .A_2:hover ~ .table_tool_tipA_2,
+.Scan_qna_writer_left_con1 .B_1:hover ~ .table_tool_tipB_1,
+.Scan_qna_writer_left_con1 .B_2:hover ~ .table_tool_tipB_2,
+.Scan_qna_writer_left_con1 .C_1:hover ~ .table_tool_tipC_1,
+.Scan_qna_writer_left_con1 .C_2:hover ~ .table_tool_tipC_2,
+.Scan_qna_writer_left_con1 .D_1:hover ~ .table_tool_tipD_1,
+.Scan_qna_writer_left_con1 .D_2:hover ~ .table_tool_tipD_2,
+.Scan_qna_writer_left_con1 .E_1:hover ~ .table_tool_tipE_1,
+.Scan_qna_writer_left_con1 .E_2:hover ~ .table_tool_tipE_2 {
+  display: block;
+}
+/* 체크박스 커스텀 */
+.Scan_qna_writer_left_con1 input[type="checkbox"] {
+  display: none;
+}
+.Scan_qna_writer_left_con1 input[type="checkbox"] + label {
+  display: inline-block;
+  width: 29px;
+  height: 29px;
+  border: 2px solid #707070;
+  position: relative;
+  /* margin-right: 50px; */
+  border-radius: 3px;
+  cursor: pointer;
+  /* box-shadow: 0 0 3px rgba(0, 0, 0, 0.2); */
+}
+.Scan_qna_writer_left_con1 input:checked + label::after {
+  content: "✔";
+  font-size: 23px;
+  width: 29px;
+  height: 29px;
+  text-align: center;
+  position: absolute;
+  left: -1px;
+  top: -4px;
+}
+.Scan_qna_writer_left_con1 input:checked + label {
+  border-color: #1c2b55;
+  border-radius: 0;
+}
+
+/* 왼쪽 박스 시장 */
+.Scan_qna_writer_left_con2 {
+  margin-top: 30px;
+  padding: 12px;
+  border-top: 2px dotted #d4d4d4;
+}
+.Scan_qna_writer_left_con2_title {
+  text-align: left;
+  margin: 0 5px;
+}
+.Scan_qna_writer_left_con2_title p:nth-child(1) {
+  font-size: 24 px;
+}
+.Scan_qna_writer_left_con2_checkbox {
+  display: flex;
+  align-items: center;
+  margin: 10px 0;
+  font-size: 18px;
+}
+.Scan_qna_writer_left_con2_checkbox_input {
+  display: flex;
+  align-items: center;
+  margin-right: 25px;
+}
+.Scan_qna_writer_left_con2_checkbox_input p {
+  margin-left: 5px;
+}
+.Scan_qna_writer_left_con2 textarea {
+  width: 100%;
+  height: 125px;
+  padding: 13px;
+  font-size: 14px;
+  margin-bottom: 15px;
+}
+
+/* 왼쪽 시장 체크박스 커스텀 */
+.Scan_qna_writer_left_con2 input[type="checkbox"] {
+  display: none;
+}
+
+.Scan_qna_writer_left_con2 input[type="checkbox"] + label {
+  display: inline-block;
+  width: 22px;
+  height: 22px;
+  border: 2px solid #707070;
+  position: relative;
+  /* margin-right: 50px; */
+  border-radius: 3px;
+  cursor: pointer;
+  /* box-shadow: 0 0 3px rgba(0, 0, 0, 0.2); */
+}
+.Scan_qna_writer_left_con2 input:checked + label::after {
+  content: "✔";
+  font-size: 16px;
+  width: 22px;
+  height: 22px;
+  text-align: center;
+  position: absolute;
+  left: -2px;
+  top: -2px;
+}
+.Scan_qna_writer_left_con2 input:checked + label {
+  border-color: #1c2b55;
+  border-radius: 0;
+}
+
+/* 오른쪽 박스*/
+.Scan_qna_writer_right {
+  height: 100%;
+  width: 60%;
+  background-color: #f9f9f9;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  overflow-y: scroll;
+  padding: 0 20px;
+}
+.Scan_qna_writer_right::-webkit-scrollbar {
+  width: 11px;
+}
+.Scan_qna_writer_right::-webkit-scrollbar-thumb {
+  height: 10%;
+  background: #1c2b55;
+}
+.Scan_qna_writer_right::-webkit-scrollbar-track {
+  background: #d9d9d9;
+}
+.Scan_qna_writer_right_list {
+  margin-top: 30px;
+  height: 180px;
+}
+.Scan_qna_writer_right_title {
+  font-size: 21px;
+  font-weight: 700;
+  text-align: left;
+  margin-bottom: 10px;
+}
+.Scan_qna_writer_right_box {
+  margin-left: 35px;
+}
+.Scan_qna_writer_right_box img {
+  width: 17px;
+}
+.Scan_qna_writer_right_text1 {
+  display: flex;
+  align-items: center;
+}
+.Scan_qna_writer_right_dot {
+  font-size: 21px;
+  line-height: 28px;
+  margin-right: 10px;
+}
+#question {
+  width: 850px;
+  height: 26px;
+  padding-left: 5px;
+  margin: 0 0 5px 0;
+  border: 1px solid #d4d4d4;
+  font-size: 15px;
+}
+.add_btn {
+  border: 0;
+  background-color: transparent;
+  cursor: pointer;
+  float: left;
+  margin-left: 17px;
+}
+.remove_btn {
+  border: 0;
+  background-color: transparent;
+  cursor: pointer;
+  margin-left: 3px;
+}
+/* 저장, 제출 */
+.Scan_qna_writer_right_btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+.Scan_qna_writer_right_btn button {
+  width: 250px;
+  height: 43px;
+  border-radius: 20px;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+}
+.Scan_qna_writer_save {
+  margin: 0 50px;
+  background-color: #eeeeee;
+  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.6);
+}
+.Scan_qna_writer_submit {
+  color: white;
+  background-color: #1c2b55;
+}

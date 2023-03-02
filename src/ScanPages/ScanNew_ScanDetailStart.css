@@ -1,0 +1,139 @@
+/* 기본스캔 */
+.Scan_new_inner {
+  height: 105%;
+  min-width: 1159px;
+  background-color: #f9f9f9;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  position: relative;
+}
+/* 세부스캔 */
+.Scan_detail_start_inner {
+  height: 101%;
+  min-width: 1159px;
+  background-color: #f9f9f9;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  position: relative;
+}
+/* 고객 정보 */
+.Scan_top {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+  position: relative;
+}
+.Scan_top p {
+  padding: 0 33px;
+  font-size: 19px;
+  color: gray;
+  font-weight: 700;
+}
+.Scan_top .Scan_top_boder {
+  border-left: 2px solid gray;
+  border-right: 2px solid gray;
+}
+.Scan_top .Scan_top_boder_left {
+  border-left: 2px solid gray;
+}
+/* 작성요령 */
+.Scan_frame_img {
+  width: 90%;
+  height: 87%;
+  margin-top: 15px;
+  margin-left: 30px;
+}
+.Scan_new_content {
+  width: 100%;
+  position: absolute;
+  top: 45%;
+  right: 50%;
+  transform: translate(50%, -50%);
+}
+.Scan_new_title {
+  font-size: 38px;
+  font-weight: 700;
+  margin-bottom: 65px;
+}
+.Scan_detail_title {
+  font-size: 38px;
+  font-weight: 700;
+  margin-bottom: 45px;
+  margin-top: 50px;
+}
+.Scan_new_content_text {
+  display: flex;
+  align-items: center;
+  padding: 5px 290px;
+  margin-top: 25px;
+}
+.Scan_new_content_text img {
+  width: 38px;
+  margin-right: 15px;
+}
+.Scan_new_content_text p {
+  font-size: 23px;
+}
+.Scan_new_content_text2 {
+  display: flex;
+  align-items: center;
+  padding: 0 290px;
+  margin-top: 5px;
+}
+.Scan_new_content_text2 img {
+  width: 38px;
+  margin-right: 15px;
+  opacity: 0;
+}
+.Scan_new_content_text2 p {
+  font-size: 23px;
+}
+.Scan_new_text_line {
+  width: 70%;
+  margin: 0 auto;
+  border-top: 2px dotted #cccccc;
+}
+/* 버튼 호버 */
+.Scan_new_btn {
+  cursor: pointer;
+  position: absolute;
+  top: 94%;
+  right: 50%;
+  transform: translate(50%, -50%);
+  z-index: 1;
+}
+.Scan_new_btn_arrow {
+  width: 50px;
+  height: 50px;
+  padding: 10px;
+  border-radius: 50%;
+  background-color: #1c2b55;
+  position: relative;
+  z-index: 1;
+  transition: all 0.5s;
+}
+.Scan_new_btn_hover {
+  top: 93%;
+  right: 50%;
+  transform: translate(50%, -80%);
+  position: absolute;
+  opacity: 0;
+  transition: all 0.5s;
+}
+.Scan_new_btn_hover p {
+  top: 90%;
+  right: 50%;
+  transform: translate(40%, -180%);
+  position: absolute;
+  color: white;
+  font-size: 17px;
+}
+.Scan_new_btn_hover img {
+  height: 60px;
+}
+.Scan_new_btn:hover > .Scan_new_btn_arrow {
+  background-color: transparent;
+  margin-left: 200px;
+}
+.Scan_new_btn:hover > .Scan_new_btn_hover {
+  opacity: 1;
+}

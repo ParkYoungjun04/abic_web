@@ -1,0 +1,252 @@
+.Scan_report_client_inner {
+  height: 101%;
+  min-width: 1159px;
+  background-color: #f9f9f9;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+.Scan_report_client_inner::-webkit-scrollbar {
+  width: 11px;
+}
+.Scan_report_client_inner::-webkit-scrollbar-thumb {
+  height: 10%;
+  background: #1c2b55;
+}
+.Scan_report_client_inner::-webkit-scrollbar-track {
+  background: #d9d9d9;
+}
+.Scan_top_right {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  right: 0;
+  top: -20px;
+}
+.Scan_report_client_qna_btn {
+  width: 160px;
+  height: 50px;
+  border: none;
+  border-radius: 30px;
+  color: aliceblue;
+  font-size: 15px;
+  background-color: #1c2b55;
+  cursor: pointer;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+.Scan_top_right img {
+  width: 55px;
+  height: 55px;
+  cursor: pointer;
+}
+.Scan_top_right img:nth-child(2) {
+  margin: 0 10px;
+}
+/* 질의응답 내역 */
+.Scan_report_client_qna_list_inner {
+  width: 83%;
+  height: 85%;
+  border-radius: 30px;
+  background-color: #f9f9f9;
+  box-shadow: 0 0 0 9999px rgba(0, 0, 0, 0.3);
+  position: absolute;
+  right: 44.5%;
+  transform: translate(50%, 10%);
+  top: 20px;
+  overflow-y: scroll;
+  z-index: 2;
+}
+.Scan_report_client_qna_list_inner::-webkit-scrollbar {
+  display: none;
+}
+.Scan_report_client_qna_list_close {
+  position: fixed;
+  top: 5px;
+  right: 12px;
+  cursor: pointer;
+}
+.Scan_report_client_qna_list_title {
+  font-size: 30px;
+  font-weight: 400;
+  margin: 25px 0;
+}
+/* 질의응답 내역 기본 질문 테이블*/
+.Scan_report_client_qna_list_table_title {
+  font-size: 28px;
+  padding: 15px 45px;
+  border-right: 2px dotted #d4d4d4;
+  color: #1c2b55;
+}
+.Scan_report_client_qna_list_table_check {
+  padding: 0 15px 0 25px;
+}
+.Scan_report_client_qna_list_table_text {
+  font-size: 18px;
+  text-align: left;
+  white-space: pre-wrap;
+}
+/* 기본 질문 시장 */
+.Scan_report_client_qna_list_cont1_market {
+  margin-top: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.Scan_report_client_qna_list_cont1_market_box {
+  width: 630px;
+  margin: 0 60px;
+}
+.Scan_report_client_qna_list_cont1_market_title {
+  font-size: 22px;
+  text-align: left;
+}
+.Scan_report_client_qna_list_cont1_market_text {
+  margin-top: 15px;
+  height: 190px;
+  border: 1px solid gray;
+  text-align: left;
+  padding: 20px;
+  margin-bottom: 30px;
+}
+/* 세부질문 */
+.Scan_report_client_qna_list_content {
+  width: 93%;
+  margin: 0 auto;
+  margin-top: 40px;
+}
+.Scan_report_client_qna_list_content:last-child {
+  margin-bottom: 60px;
+}
+.Scan_report_client_qna_list_content_title {
+  display: flex;
+  font-size: 23px;
+}
+.Scan_report_client_qna_list_content_title p {
+  cursor: pointer;
+}
+.Scan_report_client_qna_list_content_title .arrow_down_img {
+  margin: 0 10px;
+  width: 30px;
+  transform: rotate(-90deg);
+  transition: all 0.15s;
+  cursor: pointer;
+}
+.Scan_report_client_qna_list_content_box {
+  max-height: 0px !important;
+  overflow: hidden;
+  transition: all 0.2s;
+  transition-timing-function: linear;
+}
+.Scan_report_client_qna_list_content_box_content {
+  border-radius: 20px;
+  border: 2px solid #b6b6b6;
+  margin: 15px 0;
+}
+.Scan_report_client_qna_list_content_box_title {
+  height: 55px;
+  margin: 0 20px;
+  padding: 10px 0;
+  text-align: left;
+  border-bottom: 2px dotted #b6b6b6;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.Scan_report_client_qna_list_content_box_title input {
+  width: 1350px;
+  font-size: 20px;
+  border: none;
+  background-color: transparent;
+}
+.Scan_report_client_qna_list_content_text {
+  margin: 16px;
+}
+.Scan_report_client_qna_list_content_text textarea {
+  width: 100%;
+  height: 130px;
+  font-size: 17px;
+  border: none;
+  background-color: transparent;
+  border-radius: 15px;
+  padding: 5px;
+}
+/* 세부질문 II */
+.Scan_report_client_qna2_box:last-child {
+  margin-bottom: 50px;
+}
+.Scan_report_client_qna2_box {
+  width: 94%;
+  background-color: white;
+  border: 2px solid #b6b6b6;
+  border-radius: 29px;
+  margin-left: 75px;
+  margin-top: 15px;
+}
+.Scan_report_client_qna2_box_title {
+  height: 50px;
+  margin: 0 20px;
+  padding: 10px 0;
+  text-align: left;
+  border-bottom: 1px dotted #b6b6b6;
+  font-size: 17px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.Scan_report_client_qna2_box_text {
+  margin: 16px;
+}
+.Scan_report_client_qna2_box_text textarea {
+  width: 100%;
+  height: 90px;
+  font-size: 16px;
+  border: none;
+  background-color: transparent;
+  border-radius: 15px;
+  padding: 5px;
+}
+/* -----카테고리 드롭다운---- */
+.Scan_report_client_kategorie_checkbox {
+  display: none;
+}
+/* 1번째 카테고리 */
+input#kategorie1:checked ~ .Scan_report_client_qna_list_inner .con1 {
+  max-height: 5000px !important;
+}
+input#kategorie1:checked ~ .Scan_report_client_qna_list_inner .arrow1 {
+  transform: rotate(0deg);
+}
+/* 2번째 카테고리 */
+input#kategorie2:checked ~ .Scan_report_client_qna_list_inner .con2 {
+  max-height: 5000px !important;
+}
+input#kategorie2:checked ~ .Scan_report_client_qna_list_inner .arrow2 {
+  transform: rotate(0deg);
+}
+/* 3번째 카테고리 */
+input#kategorie3:checked ~ .Scan_report_client_qna_list_inner .con3 {
+  max-height: 5000px !important;
+}
+input#kategorie3:checked ~ .Scan_report_client_qna_list_inner .arrow3 {
+  transform: rotate(0deg);
+}
+/* 4번째 카테고리 */
+input#kategorie4:checked ~ .Scan_report_client_qna_list_inner .con4 {
+  max-height: 5000px !important;
+}
+input#kategorie4:checked ~ .Scan_report_client_qna_list_inner .arrow4 {
+  transform: rotate(0deg);
+}
+/* 5번째 카테고리 */
+input#kategorie5:checked ~ .Scan_report_client_qna_list_inner .con5 {
+  max-height: 5000px !important;
+}
+input#kategorie5:checked ~ .Scan_report_client_qna_list_inner .arrow5 {
+  transform: rotate(0deg);
+}
+/* 6번째 카테고리 */
+input#kategorie6:checked ~ .Scan_report_client_qna_list_inner .con6 {
+  max-height: 5000px !important;
+}
+input#kategorie6:checked ~ .Scan_report_client_qna_list_inner .arrow6 {
+  transform: rotate(0deg);
+}

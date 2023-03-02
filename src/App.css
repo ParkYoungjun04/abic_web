@@ -1,0 +1,59 @@
+* {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-decoration: none;
+  box-sizing: border-box;
+  font-family: "Roboto";
+}
+input:focus,
+textarea:focus {
+  outline: none;
+}
+textarea {
+  resize: none;
+}
+textarea {
+  background-color: #f9f9f9;
+}
+input {
+  background-color: #f9f9f9;
+}
+.App {
+  width: 100vw;
+  height: 100vh;
+  text-align: center;
+  position: relative;
+  display: flex;
+}
+.contents {
+  width: 100%;
+  min-width: 1250px;
+  max-width: 2700px;
+
+  height: 100vh;
+  min-height: 730px;
+  max-height: 1500px;
+
+  /* position: relative; */
+}
+.Router_box {
+  background-color: #ebebeb;
+  padding: 85px 25px 70px 25px;
+  height: 100%;
+  width: 100%;
+}
+
+/* 메뉴 바꾸기 */
+#control {
+  display: none;
+}
+.SidebarAdmin_component {
+  display: none;
+}
+input#control:checked ~ .App .SidebarAdmin_component {
+  display: block;
+}
+input#control:checked ~ .App .Sidebar_component {
+  display: none;
+}

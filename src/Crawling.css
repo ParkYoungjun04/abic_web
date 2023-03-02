@@ -1,0 +1,118 @@
+.Crawling_inner {
+  height: 106%;
+  min-width: 1159px;
+  background-color: #f9f9f9;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+.Crawling_inner_edit {
+  display: flex;
+  justify-content: end;
+  padding: 20px 20px 0 20px;
+}
+.Crawling_inner_edit img {
+  padding: 5px;
+  border-radius: 50%;
+  margin: 0 5px;
+  box-shadow: 0 0 3px 1px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+}
+/* 테이블 아이템 개수, 검색창 */
+.Crawling_inner_header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  padding-top: 40px;
+}
+.Crawling_show_item {
+  display: flex;
+  align-items: center;
+}
+.Crawling_show_item input {
+  width: 95px;
+  height: 35px;
+  border-radius: 20px;
+  text-align: center;
+  font-size: 17px;
+  border: 1px solid gray;
+}
+.Crawling_show_item input::-webkit-outer-spin-button,
+.Crawling_show_item input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.Crawling_show_item p {
+  margin: 0 10px;
+  font-size: 15px;
+  color: gray;
+}
+.Crawling_search_bar {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.Crawling_search_bar input {
+  width: 350px;
+  height: 55px;
+  border: 1.5px solid #1c2b55;
+  border-radius: 35px;
+  font-size: 19px;
+  padding: 5px 40px;
+}
+/* .Crawling_search_bar {
+  position: absolute;
+  right: 10px;
+  cursor: pointer;
+} */
+/* 테이블 헤더 셀*/
+.Crawling_inner tr .MuiTableCell-head:nth-child(1) {
+  width: 10%;
+}
+.Crawling_inner tr .MuiTableCell-head:nth-child(2) {
+  width: 20%;
+}
+.Crawling_inner tr .MuiTableCell-head:nth-child(3) {
+  width: 35%;
+}
+.Crawling_inner tr .MuiTableCell-head:nth-child(4) {
+  width: 20%;
+}
+/* 페이지네이션 */
+.crawling_pagination {
+  margin-top: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* gap: 7px; */
+}
+.crawling_Previos,
+.crawling_Next {
+  /* width: 20px;
+  height: 30px;
+  border: none;
+  cursor: pointer;
+  color: gray;
+  background-color: transparent;
+  font-size: 20px;
+  font-weight: 700; */
+  width: 78px;
+  height: 38px;
+  border: 1px solid rgba(224, 224, 224, 1);
+  font-size: 16px;
+  background-color: white;
+  cursor: pointer;
+}
+.crawling_pageNumber {
+  width: 50px;
+  height: 38px;
+  border: none;
+  cursor: pointer;
+  color: gray;
+  border: 1px solid rgba(224, 224, 224, 1);
+  font-size: 18px;
+  background-color: white;
+}
+.crawling_pageNumber[aria-current="page"] {
+  color: black;
+  font-weight: 700;
+}

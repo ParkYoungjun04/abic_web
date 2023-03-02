@@ -1,0 +1,51 @@
+// 카테고리, 말풍선
+@for $i from 1 through 4 {
+  input#kategorie#{$i}:checked ~ .Focus_qna_b_client_inner .con#{$i} {
+    max-height: 5000px !important;
+  }
+  input#kategorie#{$i}:checked ~ .Focus_qna_b_client_inner .arrow#{$i} {
+    transform: rotate(0deg);
+  }
+  @for $k from 1 through 10 {
+    input#answer#{$i}_#{$k}:checked
+      ~ .Focus_qna_b_client_inner
+      .box#{$i}_#{$k} {
+      width: 98.5%;
+    }
+    input#answer#{$i}_#{$k}:checked
+      ~ .Focus_qna_b_client_inner
+      .box#{$i}_#{$k}
+      .text#{$i}_#{$k} {
+      border-top: 2px dotted #d4d4d4;
+    }
+    input#answer#{$i}_#{$k}:checked
+      ~ .Focus_qna_b_client_inner
+      .box#{$i}_#{$k}
+      > .text#{$i}_#{$k}
+      textarea {
+      display: block;
+    }
+    input#answer#{$i}_#{$k}:checked
+      ~ .Focus_qna_b_client_inner
+      .box#{$i}_#{$k}
+      > .title#{$i}_#{$k}
+      input {
+      width: 1360px;
+    }
+    input#answer#{$i}_#{$k}:checked
+      ~ .Focus_qna_b_client_inner
+      .box#{$i}_#{$k}
+      > .title#{$i}_#{$k}
+      .click_lable
+      img {
+      display: none;
+    }
+    input#answer#{$i}_#{$k}:checked
+      ~ .Focus_qna_b_client_inner
+      .box#{$i}_#{$k}
+      > .title#{$i}_#{$k}
+      .cilp {
+      display: block;
+    }
+  }
+}

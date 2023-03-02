@@ -1,0 +1,136 @@
+.Header {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 60px;
+  width: 89%;
+  box-sizing: border-box;
+  z-index: 2 !important;
+  border-bottom: 1px solid #acacac;
+}
+.Header_inner {
+  position: relative;
+  padding: 0 30px;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f9f9f9;
+}
+.Header_title {
+  display: flex;
+  align-items: center;
+}
+.Header_title img {
+  width: 20px;
+  height: 20px;
+}
+.Header_title p {
+  padding-left: 10px;
+  font-size: 27px;
+  font-weight: 400;
+  color: #1c2b55;
+}
+.Slide_input {
+  display: none;
+}
+.User_menu {
+  position: absolute;
+  top: 0;
+  right: 30px;
+}
+.Profil_box {
+  height: 60px;
+  display: flex;
+  align-items: center;
+}
+
+.Profil_box h2 {
+  font-size: 21px;
+}
+
+.Profil_box p {
+  font-size: 13px;
+}
+
+.Profil_box:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+}
+
+.User {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  margin: 0 5px;
+}
+
+.Profil_text p:first-child {
+  float: left;
+  font-size: 19px;
+  font-weight: 400;
+}
+.Profil_text p:last-child {
+  font-size: 15px;
+  font-weight: 300;
+}
+.Profil_menu {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 30px;
+  margin-left: 10px;
+}
+
+.Profil_menu img {
+  width: 20px;
+  height: 20px;
+  transition: all 0.15s;
+}
+
+.User_down {
+  width: 65%;
+  float: right;
+  margin: -5px 10px 20px 0;
+  border-radius: 10px;
+  background-color: #f9f9f9;
+  max-height: 0px !important;
+  overflow: hidden;
+  transition: all 0.2s;
+  transition-timing-function: linear;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
+  padding: 0;
+}
+.User_nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 50px;
+  width: 100%;
+}
+.User_down a {
+  margin: 0 10px;
+  display: block;
+  color: #1c2b55;
+  font-size: 16px;
+  letter-spacing: -1px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+  font-weight: 400;
+  cursor: pointer;
+}
+.User_down a:last-child {
+  border-bottom: none;
+}
+
+input#User:checked ~ .Header .User_menu .User_down {
+  max-height: 350px !important;
+}
+
+input#User:checked ~ .Header .User_menu .header_arrow {
+  transform: rotateX(180deg);
+}
+.User_nav {
+  cursor: pointer;
+}

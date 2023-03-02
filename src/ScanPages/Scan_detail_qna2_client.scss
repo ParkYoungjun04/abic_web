@@ -1,0 +1,35 @@
+// 세부스캔 II 질문
+// 1-1-1 ~ 6-2-5까지
+@for $i from 1 through 6 {
+  @for $k from 1 through 4 {
+    @for $j from 1 through 5 {
+      input#answer#{$i}_#{$k}_#{$j}:checked
+        ~ .Scan_detail_qna_client_inner
+        .box#{$i}_#{$k}_#{$j} {
+        width: 98.5%;
+      }
+
+      input#answer#{$i}_#{$k}_#{$j}:checked
+        ~ .Scan_detail_qna_client_inner
+        .box#{$i}_#{$k}_#{$j}
+        .text#{$i}_#{$k}_#{$j} {
+        border-top: 2px dotted #d4d4d4;
+      }
+      input#answer#{$i}_#{$k}_#{$j}:checked
+        ~ .Scan_detail_qna_client_inner
+        .box#{$i}_#{$k}_#{$j}
+        > .text#{$i}_#{$k}_#{$j}
+        textarea {
+        display: block;
+      }
+      input#answer#{$i}_#{$k}_#{$j}:checked
+        ~ .Scan_detail_qna_client_inner
+        .box#{$i}_#{$k}_#{$j}
+        > .title#{$i}_#{$k}_#{$j}
+        .click_lable
+        img {
+        display: none;
+      }
+    }
+  }
+}

@@ -1,0 +1,125 @@
+.Sidebar {
+  width: 210px;
+  height: 100vh;
+  min-height: 730px;
+  max-height: 1500px;
+  background-color: #1c2b55;
+  z-index: 99;
+  position: relative;
+}
+.Sidebar_inner {
+  padding: 40px 6px 40px 6px;
+  width: 100%;
+  color: #ebebeb;
+  font-weight: 300;
+}
+.logo {
+  width: 100%;
+  height: 60px;
+  border-bottom: 1px solid #394a7a;
+}
+.logo img {
+  width: 120px;
+  margin: 15px 3px;
+  padding: 0 10px;
+  float: left;
+}
+.menu_home {
+  height: 75px;
+  display: flex;
+  padding: 0 10px;
+  color: #ebebeb;
+}
+.menu_home img {
+  width: 20px;
+  height: 20px;
+}
+.menu_home p {
+  margin-left: 15px;
+  font-size: 20px;
+  cursor: pointer;
+}
+.ISFC_title {
+  text-align: left;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.4);
+  padding: 0 10px;
+}
+.Side_menu_title {
+  margin-top: 10px;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+.Side_menu_title img {
+  width: 20px;
+  height: 20px;
+}
+.Side_menu_title p {
+  font-size: 18px;
+  margin: 0px 50px 0 15px;
+}
+.Side_menu {
+  border-radius: 13px;
+  background-color: #2d3a5e;
+  overflow: hidden;
+  margin-top: 10px;
+  transition: max-height 0.15s;
+  transition-timing-function: linear;
+  max-height: 0px !important;
+}
+.menu_arrow {
+  transition: all 0.15s;
+}
+.Side_menu_link {
+  height: 40px;
+  display: flex;
+  align-items: center;
+  color: #ebebeb;
+}
+.Side_menu_title {
+  color: #ebebeb;
+}
+.dot {
+  margin: 0 15px;
+  font-size: 30px;
+}
+.active {
+  font-weight: 700;
+}
+.Side_menu .active .Side_menu_link {
+  background-color: #3c496c;
+  font-weight: 700;
+}
+.consultant_tool {
+  text-align: left;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.4);
+  padding: 0 10px;
+  margin-top: 20px;
+}
+/* 메뉴 드롭다운 */
+input[name="menu"] {
+  display: none;
+}
+input#Scan:checked ~ .Sidebar .Scan,
+input#Focus:checked ~ .Sidebar .Focus,
+input#Create:checked ~ .Sidebar .Create,
+input#Ishap:checked ~ .Sidebar .Ishap,
+input#Scan_admin:checked ~ .Sidebar .Scan,
+input#Focus_admin:checked ~ .Sidebar .Focus,
+input#Create_admin:checked ~ .Sidebar .Create,
+input#Ishap_admin:checked ~ .Sidebar .Ishap {
+  max-height: 220px !important;
+}
+input#Scan:checked ~ .Sidebar .Scan_arrow,
+input#Focus:checked ~ .Sidebar .Focus_arrow,
+input#Create:checked ~ .Sidebar .Create_arrow,
+input#Ishap:checked ~ .Sidebar .Ishap_arrow,
+input#Scan_admin:checked ~ .Sidebar .Scan_arrow,
+input#Focus_admin:checked ~ .Sidebar .Focus_arrow,
+input#Create_admin:checked ~ .Sidebar .Create_arrow,
+input#Ishap_admin:checked ~ .Sidebar .Ishap_arrow {
+  transform: rotate(90deg);
+}

@@ -1,0 +1,224 @@
+.Scan_all_inner {
+  height: 106%;
+  min-width: 1159px;
+  background-color: #f9f9f9;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+.table_top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 30px;
+  padding-top: 70px;
+}
+.table_show_item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+.table_show_item input {
+  width: 75px;
+  height: 35px;
+  border-radius: 20px;
+  text-align: center;
+  font-size: 20px;
+  border: 1px solid gray;
+}
+.table_show_item input::-webkit-outer-spin-button,
+.table_show_item input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.table_show_item p {
+  margin: 0 10px;
+  font-size: 15px;
+  color: gray;
+}
+.table_add_btn {
+  width: 250px;
+  height: 50px;
+  position: relative;
+  cursor: pointer;
+}
+.table_add_btn p {
+  line-height: 50px;
+  color: white;
+  position: relative;
+  z-index: 1;
+  transition: all 0.5s;
+}
+.add_button_img {
+  width: 250px;
+  height: 55px;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.add_button_hover_img {
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  top: 3px;
+  right: 8px;
+  transition: all 0.5s;
+  opacity: 0;
+}
+.table_add_btn p:hover {
+  padding-right: 25px;
+}
+.table_add_btn p:hover ~ .add_button_hover_img {
+  opacity: 1;
+}
+.MuiTableContainer-root {
+  min-height: 615px;
+  max-height: 615px;
+}
+/* 테이블 헤더 셀*/
+tr .MuiTableCell-head {
+  background-color: #1c2b55;
+  color: white;
+  border-right: 1px solid #e0e0e0;
+  font-size: 18px;
+  font-weight: 700;
+  width: 35%;
+  padding: 15px 0;
+}
+tr .MuiTableCell-head:nth-child(3) {
+  width: 25%;
+}
+tr .MuiTableCell-head:nth-child(4) {
+  width: 5%;
+}
+/* 테이블 바디 셀 */
+.MuiTableBody-root .MuiTableRow-root .MuiTableCell-body {
+  border-right: 1px solid rgba(224, 224, 224, 1);
+  font-size: 16px;
+  cursor: pointer;
+  height: 56px;
+  padding: 5px 0;
+}
+.MuiTableBody-root .MuiTableRow-root .MuiTableCell-body a {
+  color: black;
+}
+.MuiTableBody-root .table_bold td {
+  font-weight: 700;
+}
+/* ---데이블 정렬,필터--- */
+.sort_img {
+  position: absolute;
+  right: 4.5%;
+  top: 50%;
+  cursor: pointer;
+  transform: translate(50%, -50%);
+}
+.sort_img img {
+  width: 37px;
+  height: 37px;
+}
+.table_filter {
+  position: absolute;
+  right: 6%;
+  top: 55%;
+  cursor: pointer;
+  transform: translate(50%, -50%);
+}
+.table_filter img {
+  width: 23px;
+  height: 23px;
+}
+.table_filter_box {
+  position: absolute;
+  width: 200px;
+  border-radius: 10px;
+  transform: translate(-88%, 0);
+  background-color: #f9f9f9;
+  box-shadow: 0 0 7px rgba(0, 0, 0, 0.4);
+  padding: 2px 15px;
+}
+.focus_table_filter_box {
+  position: absolute;
+  width: 240px;
+  border-radius: 10px;
+  transform: translate(-88%, 0);
+  background-color: #f9f9f9;
+  box-shadow: 0 0 7px rgba(0, 0, 0, 0.4);
+  padding: 2px 15px;
+}
+.table_filter_box p {
+  color: black;
+  font-size: 13px;
+  font-weight: 400;
+}
+.table_filter_box_input {
+  display: flex;
+  margin: 5px 0;
+}
+.table_filter_box_input p {
+  margin-left: 10px;
+  cursor: pointer;
+}
+/* 테이블 삭제 모달 */
+.delete_img {
+  width: 25px;
+  height: 25px;
+}
+.delete_Modal {
+  width: 400px;
+  height: 350px;
+  position: relative;
+  position: absolute;
+  right: 50%;
+  top: 50%;
+  transform: translate(50%, -50%);
+}
+.delete_Modal img {
+  width: 400px;
+  height: 350px;
+}
+.delete_Modal_btn {
+  width: 360px;
+  height: 65px;
+  position: absolute;
+  right: 50%;
+  bottom: 0;
+  transform: translate(50%, -54%);
+  display: flex;
+}
+.delete_Modal_btn button {
+  border: none;
+  width: 50%;
+  background-color: transparent;
+  cursor: pointer;
+}
+/* ---테이블 페이지네이션--- */
+.pagination {
+  margin-top: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 7px;
+}
+.Previos,
+.Next {
+  width: 20px;
+  height: 30px;
+  border: none;
+  cursor: pointer;
+  color: gray;
+  background-color: transparent;
+  font-size: 20px;
+  font-weight: 700;
+}
+.pageNumber {
+  width: 30px;
+  height: 30px;
+  border: none;
+  cursor: pointer;
+  color: gray;
+  background-color: transparent;
+  font-size: 18px;
+}
+.pageNumber[aria-current="page"] {
+  color: black;
+  font-weight: bold;
+}
