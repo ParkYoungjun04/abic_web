@@ -16,7 +16,7 @@ const SignUp = () => {
       return alert("이메일 형식에 맞지않습니다");
     } else if (!passwordRegex.test(user.password)) {
       return alert(
-        "숫자, 영문자 특수문자 포함 6~18자리 비밀번호를 입력해주세요"
+        "숫자, 영문자 특수문자 포함 6~18자리 비밀번호를 입력해주세요 (사용 불가능한 특수문자 '*' )"
       );
     } else if (user.name === "") {
       return alert("이름을 입력해주세요");

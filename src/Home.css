@@ -1,8 +1,7 @@
 .Home {
   height: 104%;
   min-width: 1159px;
-  /* background-color: #f9f9f9;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2); */
+  min-height: 850px;
   display: flex;
   flex-wrap: wrap;
 }

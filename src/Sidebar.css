@@ -1,7 +1,7 @@
 .Sidebar {
   width: 210px;
   height: 100vh;
-  min-height: 730px;
+  min-height: 950px;
   max-height: 1500px;
   background-color: #1c2b55;
   z-index: 99;
