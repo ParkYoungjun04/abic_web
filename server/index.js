@@ -2,7 +2,7 @@ const express = require("express");
 const axios = require("axios");
 const cheerio = require("cheerio");
 const app = express();
-const mysql = require("mysql");
+const mysql = require("mysql2");
 const cors = require("cors");
 const bodyParser = require("body-parser");
 const { urlencoded } = require("body-parser");
@@ -20,7 +20,11 @@ const storage = multer.diskStorage({
     cb(null, "./upload");
   },
   filename: (req, file, cb) => {
+    file.originalname = Buffer.from(file.originalname, "latin1").toString(
+      "utf8"
+    );
     cb(null, file.originalname);
+    console.log(file.originalname);
   },
 });
 const upload = multer({ storage: storage });
@@ -224,7 +228,7 @@ app.post("/post/Scan_qna_client", upload.single("file"), (req, res) => {
   const state = req.body.state;
   const fileName = req.body.file === "null" ? null : req.body.fileName;
   const userName = req.body.userName;
-  console.log(req.body);
+  // console.log(req.body);
   // 고객 스캔
   const sqlQuery1 =
     "INSERT INTO scan_all_client (BUSINESS_NAME, CREATED_DATE, STATE_ID) values(?,?,?)";
@@ -311,7 +315,7 @@ app.put("/put/Scan_qna_viewer_client", upload.single("file"), (req, res) => {
   const clientData = JSON.parse(req.body.clientData);
   const state = req.body.state;
   const fileName = req.body.file === "null" ? null : req.body.fileName;
-  console.log("Scan_qna_viewer_client");
+
   const sqlQuery1 =
     "UPDATE scan_b SET A=?, B=?, C=?, D=?, E=?, MK_1=?, MK_2=?, MK_3=?, MK_4=?, DT_1_NAME=?, DT_1_1=?, DT_1_2=?, DT_1_3=?, DT_1_4=?, DT_1_5=?, DT_1_TEXT=?, DT_2_NAME=?, DT_2_1=?, DT_2_2=?, DT_2_3=?, DT_2_4=?, DT_2_5=?, DT_2_TEXT=?, FILE_NAME=? where BUSINESS_NAME=?;";
 
@@ -372,7 +376,7 @@ app.put("/put/Scan_qna_writer", (req, res) => {
   const business_name = req.body.business_name;
   const state = req.body.state;
   const questionList = req.body.questionList;
-  console.log("Scan_qna_writer");
+
   // 세부스캔 질문
   const sqlQuery1 =
     "UPDATE scan_d_q SET 1_1=?, 1_2=?, 1_3=?, 1_4=?, 2_1=?, 2_2=?, 2_3=?, 2_4=?, 3_1=?, 3_2=?, 3_3=?, 3_4=?, 4_1=?, 4_2=?, 4_3=?, 4_4=?, 5_1=?, 5_2=?, 5_3=?, 5_4=? where BUSINESS_NAME=?;";
@@ -440,8 +444,7 @@ app.put("/put/Scan_detail_qna_client", upload.array("file"), (req, res) => {
   const answerList = JSON.parse(req.body.answerList);
   const state = req.body.state;
   const fileName = req.body.fileName;
-  console.log(req.body);
-  console.log("Scan_detail_qna_client");
+
   // 세부스캔 답변
   const sqlQuery1 =
     "UPDATE scan_d_a SET 1_1=?, 1_2=?, 1_3=?, 1_4=?, 2_1=?, 2_2=?, 2_3=?, 2_4=?, 3_1=?, 3_2=?, 3_3=?, 3_4=?, 4_1=?, 4_2=?, 4_3=?, 4_4=?, 5_1=?, 5_2=?, 5_3=?, 5_4=?, 6_1=?, 6_2=?, F_1_1=?, F_1_2=?, F_1_3=?, F_1_4=?, F_2_1=?, F_2_2=?, F_2_3=?, F_2_4=?, F_3_1=?, F_3_2=?, F_3_3=?, F_3_4=?, F_4_1=?, F_4_2=?, F_4_3=?, F_4_4=?, F_5_1=?, F_5_2=?, F_5_3=?, F_5_4=?, F_6_1=?, F_6_2=? where BUSINESS_NAME=?;";
@@ -542,7 +545,6 @@ app.put("/put/Scan_report_writer", upload.single("file"), (req, res) => {
   const writerList = JSON.parse(req.body.writerList);
   const state = req.body.state;
   const fileName = req.body.fileName;
-  console.log(req.body);
 
   // 리포트
   const sqlQuery1 =
@@ -656,7 +658,6 @@ app.put("/put/Scan_qna_2_write", (req, res) => {
   const writerList = req.body.writerList;
   const questionList = req.body.questionList;
   const state = req.body.state;
-  console.log(req.body);
 
   // 리포트
   const sqlQuery1 =
@@ -876,9 +877,7 @@ app.put("/put/Scan_qna_2_write", (req, res) => {
       questionList.question6_2_5,
       business_name,
     ],
-    (err) => {
-      console.log(err);
-    }
+    () => {}
   );
   db.query(
     sqlQuery3,
@@ -901,7 +900,6 @@ app.get("/get/Scan_qna_2_write", (req, res) => {
 
 // 세부스캔 II 답변 작성
 app.put("/put/Scan_detail_qna_2_client", (req, res) => {
-  console.log("Scan_detail_qna_2_client");
   const business_name = req.body.business_name;
   const answerList2 = req.body.answerList2;
   const state = req.body.state;
@@ -1062,9 +1060,7 @@ app.put("/put/Scan_detail_qna_2_client", (req, res) => {
 
       business_name,
     ],
-    (err) => {
-      console.log(err);
-    }
+    () => {}
   );
   db.query(sqlQuery2, [state, business_name], () => {});
   db.query(
@@ -1552,9 +1548,7 @@ app.put("/put/Focus_report_writer", upload.single("file"), (req, res) => {
       fileName,
       business_name,
     ],
-    (err) => {
-      console.log(err);
-    }
+    () => {}
   );
 
   db.query(
@@ -1801,9 +1795,7 @@ app.put("/put/Focus_qna_2_write", (req, res) => {
 
       business_name,
     ],
-    (err) => {
-      console.log(err);
-    }
+    () => {}
   );
   res.send("success");
 });
@@ -1974,9 +1966,7 @@ app.put("/put/Focus_qna_2_client", (req, res) => {
 
       business_name,
     ],
-    (err) => {
-      console.log(err);
-    }
+    () => {}
   );
   res.send("success");
 });
@@ -2009,7 +1999,7 @@ app.get("/get/Crawling/news", (req, res) => {
         ).data;
         return html;
       } catch (error) {
-        console.log(error);
+        console.log("크롤링 naver html : ", error);
       }
     };
     const parsing = async (page) => {
@@ -2037,6 +2027,7 @@ app.get("/get/Crawling/news", (req, res) => {
       const html = await getHtml(keyWord, pageNum);
       const news = await parsing(html);
       // console.log(pageNum, " 페이지");
+
       list.push(news);
       return news;
     };
@@ -2067,7 +2058,7 @@ app.get("/get/Crawling/news", (req, res) => {
         ).data;
         return html;
       } catch (error) {
-        console.log(error);
+        console.log("크롤링 구글 html : ", error);
       }
     };
     const parsing = async (page) => {
@@ -2099,7 +2090,10 @@ app.get("/get/Crawling/news", (req, res) => {
       // console.log("google", news.slice(0, 20));
       console.log("google 총 갯수 : ", news.length);
       list.push(news);
-      res.send(list.flat(Infinity));
+      console.log(list.flat(Infinity).length);
+      setTimeout(() => {
+        res.send(list.flat(Infinity));
+      }, 5000);
       return news;
     };
     getNews(searchKeyword);
@@ -2121,6 +2115,7 @@ app.post("/post/signUp", (req, res) => {
 
   const sqlQuery1 = "select * from user where EMAIL=?;";
   db.query(sqlQuery1, [email], (err, result) => {
+    console.log("회원가입 sqlQuery err : ", err);
     if (result.length > 0) {
       console.log("이메일이 존재함");
       return res.send("n");
@@ -2151,6 +2146,7 @@ app.post("/post/login", (req, res) => {
   const sqlQuery = "select * from user where EMAIL=?;";
 
   db.query(sqlQuery, [email], (err, row) => {
+    console.log("로그인 sqlQuery err : ", err);
     if (row.length > 0) {
       bcrypt.compare(password, row[0].PASSWORD, (error, result) => {
         if (result) {

@@ -6,7 +6,7 @@
 }
 .Crawling_inner_edit {
   display: flex;
-  justify-content: end;
+  justify-content: start;
   padding: 20px 20px 0 20px;
 }
 .Crawling_inner_edit img {
@@ -20,20 +20,20 @@
 .Crawling_inner_header {
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  padding: 10px 20px;
-  padding-top: 40px;
+  align-items: flex-end;
+  padding: 25px 30px;
+  padding-top: 30px;
 }
 .Crawling_show_item {
   display: flex;
   align-items: center;
 }
 .Crawling_show_item input {
-  width: 95px;
+  width: 75px;
   height: 35px;
   border-radius: 20px;
   text-align: center;
-  font-size: 17px;
+  font-size: 20px;
   border: 1px solid gray;
 }
 .Crawling_show_item input::-webkit-outer-spin-button,
@@ -79,7 +79,7 @@
 }
 /* 페이지네이션 */
 .crawling_pagination {
-  margin-top: 25px;
+  margin-top: 2.5%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -87,14 +87,6 @@
 }
 .crawling_Previos,
 .crawling_Next {
-  /* width: 20px;
-  height: 30px;
-  border: none;
-  cursor: pointer;
-  color: gray;
-  background-color: transparent;
-  font-size: 20px;
-  font-weight: 700; */
   width: 78px;
   height: 38px;
   border: 1px solid rgba(224, 224, 224, 1);

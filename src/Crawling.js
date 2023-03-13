@@ -29,7 +29,7 @@ const Crawling = () => {
       });
     }
   };
-
+  console.log("crawlingData : ", crawlingData);
   // ----------↓↓↓ 페이지 네이션 ↓↓↓----------
 
   //페이지에 보여줄 아이템 갯수
@@ -53,12 +53,7 @@ const Crawling = () => {
     <>
       <Header title="Crawling" img="./img/crawling_icon.png" />
       <div className="Crawling_inner">
-        <div className="Crawling_inner_edit">
-          <img src="./img/delete.png" />
-          <img src="./img/delete.png" />
-          <img src="./img/delete.png" />
-          <img src="./img/delete.png" />
-        </div>
+        <div className="Crawling_inner_edit"></div>
         <div className="Crawling_inner_header">
           <div className="Crawling_show_item">
             <input

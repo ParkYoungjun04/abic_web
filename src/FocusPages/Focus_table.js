@@ -30,8 +30,9 @@ const Focus_table = ({ table_name, url }) => {
       data: {
         index: key,
       },
+    }).then(() => {
+      window.location.href = url;
     });
-    window.location.href = url;
   };
   // ----------↓↓↓ 페이지 네이션 ↓↓↓----------
 
@@ -453,7 +454,7 @@ const Focus_table = ({ table_name, url }) => {
                           state_name: item.STATE_NAME,
                         }}
                       >
-                        {item.STATE_NAME}
+                        <p>{item.STATE_NAME}</p>
                       </NavLink>
                     ) : (item.QUESTION_TYPE === "p" &&
                         item.STATE_NAME === "기본포커스 제출완료") ||
@@ -468,7 +469,7 @@ const Focus_table = ({ table_name, url }) => {
                           state_name: item.STATE_NAME,
                         }}
                       >
-                        {item.STATE_NAME}
+                        <p>{item.STATE_NAME}</p>
                       </NavLink>
                     ) : table_name === "detail_client" ||
                       (table_name === "all_client" &&
@@ -483,7 +484,7 @@ const Focus_table = ({ table_name, url }) => {
                           clientData: item,
                         }}
                       >
-                        {item.STATE_NAME}
+                        <p>{item.STATE_NAME}</p>
                       </NavLink>
                     ) : item.STATE_NAME === "리포트" ? (
                       <NavLink
@@ -495,7 +496,7 @@ const Focus_table = ({ table_name, url }) => {
                           clientData: item,
                         }}
                       >
-                        {item.STATE_NAME}
+                        <p>{item.STATE_NAME}</p>
                       </NavLink>
                     ) : (table_name === "all_writer" &&
                         item.STATE_NAME === "추가포커스 밸류체인 작성중") ||
@@ -512,7 +513,7 @@ const Focus_table = ({ table_name, url }) => {
                           client_name: item.CLIENT_NAME,
                         }}
                       >
-                        {item.STATE_NAME}
+                        <p>{item.STATE_NAME}</p>
                       </NavLink>
                     ) : item.STATE_NAME === "리포트 작성중" ||
                       item.STATE_NAME === "리포트 제출완료" ? (
@@ -526,10 +527,10 @@ const Focus_table = ({ table_name, url }) => {
                           client_name: item.CLIENT_NAME,
                         }}
                       >
-                        {item.STATE_NAME}
+                        <p>{item.STATE_NAME}</p>
                       </NavLink>
                     ) : (
-                      item.STATE_NAME
+                      <p>{item.STATE_NAME}</p>
                     )}
                   </TableCell>
                   {table_name.slice(-6) === "client" && (

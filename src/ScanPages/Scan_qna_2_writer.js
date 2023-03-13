@@ -3,7 +3,9 @@ import React, { useState, useRef, useEffect } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import Axios from "axios";
 import Header from "../Header";
+import Loading from "../Loading";
 const Scan_qna_2_writer = () => {
+  const [isLoad, setIsLoad] = useState(false);
   const location = useLocation({});
 
   // 사업명
@@ -1634,34 +1636,36 @@ const Scan_qna_2_writer = () => {
   //모달 외부 클릭 시 닫힘
   const modalOutSide = useRef();
   useEffect(() => {
-    const clickOutside = (e) => {
-      // 모달이 열려 있고 모달의 바깥쪽을 눌렀을 때 창 닫기
-      if (
-        setSubmitModal &&
-        modalOutSide.current &&
-        !modalOutSide.current.contains(e.target)
-      ) {
-        setSubmitModal(false);
-      }
-      if (
-        setNoWriteModal &&
-        modalOutSide.current &&
-        !modalOutSide.current.contains(e.target)
-      ) {
-        setNoWriteModal(false);
-      }
-      if (
-        setReportModal &&
-        modalOutSide.current &&
-        !modalOutSide.current.contains(e.target)
-      ) {
-        setReportModal(false);
-      }
-    };
-    document.addEventListener("mousedown", clickOutside);
-    return () => {
-      document.removeEventListener("mousedown", clickOutside);
-    };
+    if (isLoad === false) {
+      const clickOutside = (e) => {
+        // 모달이 열려 있고 모달의 바깥쪽을 눌렀을 때 창 닫기
+        if (
+          setSubmitModal &&
+          modalOutSide.current &&
+          !modalOutSide.current.contains(e.target)
+        ) {
+          setSubmitModal(false);
+        }
+        if (
+          setNoWriteModal &&
+          modalOutSide.current &&
+          !modalOutSide.current.contains(e.target)
+        ) {
+          setNoWriteModal(false);
+        }
+        if (
+          setReportModal &&
+          modalOutSide.current &&
+          !modalOutSide.current.contains(e.target)
+        ) {
+          setReportModal(false);
+        }
+      };
+      document.addEventListener("mousedown", clickOutside);
+      return () => {
+        document.removeEventListener("mousedown", clickOutside);
+      };
+    }
   }, []);
 
   //제출하기 버튼 클릭 시 유효성 검사
@@ -1704,7 +1708,7 @@ const Scan_qna_2_writer = () => {
       setSaveModal(true);
     } else if (key === "submit") {
       state = "SCAN_A4";
-      window.location.href = "/Home_writer";
+      setIsLoad(true);
     } else if (key === "report") {
       state = "SCAN_A5";
       setReportModal(true);
@@ -1714,6 +1718,11 @@ const Scan_qna_2_writer = () => {
       writerList,
       state,
       questionList,
+    }).then((response) => {
+      console.log(response.data);
+      if (state === "SCAN_A4") {
+        window.location.href = "/Home_writer";
+      }
     });
   };
 
@@ -1724,6 +1733,7 @@ const Scan_qna_2_writer = () => {
         title="SCANNer 세부스캔 II 질문요청"
         img="./img/header_scan.png"
       />
+      {isLoad && <Loading />}
       <div className="Scan_top">
         <p>회원명 : {client_name}</p>
         <p className="Scan_top_boder_left">
@@ -2203,7 +2213,7 @@ const Scan_qna_2_writer = () => {
                                 ? answerList.answer2_2
                                 : item.key === "2_3"
                                 ? answerList.answer2_3
-                                : item.key === "2_4"
+                                : answerList.answer2_4
                             }
                             disabled
                           />
@@ -2616,7 +2626,7 @@ const Scan_qna_2_writer = () => {
                                 ? answerList.answer3_2
                                 : item.key === "3_3"
                                 ? answerList.answer3_3
-                                : item.key === "3_4"
+                                : answerList.answer3_4
                             }
                             disabled
                           />
@@ -3030,7 +3040,7 @@ const Scan_qna_2_writer = () => {
                                 ? answerList.answer4_2
                                 : item.key === "4_3"
                                 ? answerList.answer4_3
-                                : item.key === "4_4"
+                                : answerList.answer3_4
                             }
                             disabled
                           />
@@ -3442,7 +3452,7 @@ const Scan_qna_2_writer = () => {
                                 ? answerList.answer5_2
                                 : item.key === "5_3"
                                 ? answerList.answer5_3
-                                : item.key === "5_4"
+                                : answerList.answer3_4
                             }
                             disabled
                           />

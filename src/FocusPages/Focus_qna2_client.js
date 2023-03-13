@@ -4,7 +4,10 @@ import React, { useState, useRef, useEffect } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import Axios from "axios";
 import Header from "../Header";
+import Loading from "../Loading";
+
 const Focus_qna2_client = () => {
+  const [isLoad, setIsLoad] = useState(false);
   const location = useLocation({});
 
   const clientData = location.state.clientData;
@@ -1887,12 +1890,17 @@ const Focus_qna2_client = () => {
       setSaveModal(true);
     } else if (key == "submit") {
       state = "FOCUS_C3";
-      window.location.href = "/Home_client";
+      setIsLoad(true);
     }
     await Axios.put("http://34.68.101.191:8000/put/Focus_qna_2_client", {
       business_name: clientData.BUSINESS_NAME,
       answerList2,
       state,
+    }).then((response) => {
+      console.log(response.data);
+      if (state === "FOCUS_C3") {
+        window.location.href = "/Home_client";
+      }
     });
   };
   // 제출하기 클릭
@@ -1931,6 +1939,7 @@ const Focus_qna2_client = () => {
     <>
       {questionInputs()}
       <Header title="FOCUSer 추가포커스" img="./img/focus_icon.png" />
+      {isLoad && <Loading />}
       <div className="Scan_top">
         <p>사업명 : {clientData.BUSINESS_NAME}</p>
         <p className="Scan_top_boder">제출일시 : {clientData.CREATED_DATE}</p>

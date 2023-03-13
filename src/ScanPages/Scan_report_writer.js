@@ -6,7 +6,10 @@ import "@react-pdf-viewer/core/lib/styles/index.css";
 import "@react-pdf-viewer/print/lib/styles/index.css";
 import Axios from "axios";
 import Header from "../Header";
+import Loading from "../Loading";
 const Scan_report_writer = () => {
+  const [isLoad, setIsLoad] = useState(false);
+
   const location = useLocation({});
 
   // 컨설턴트 정보
@@ -1059,7 +1062,7 @@ const Scan_report_writer = () => {
       setSaveModal(true);
     } else if (key == "submit") {
       state = "SCAN_C6";
-      window.location.href = "/Home_writer";
+      setIsLoad(true);
     } else if (key == "qna2") {
       state = "SCAN_A3";
     }
@@ -1072,7 +1075,12 @@ const Scan_report_writer = () => {
     await Axios.put(
       "http://34.68.101.191:8000/put/Scan_report_writer",
       formDate
-    );
+    ).then((response) => {
+      console.log(response.data);
+      if (state === "SCAN_C6") {
+        window.location.href = "/Home_writer";
+      }
+    });
   };
   //파일미리 보기
   const [writerFileModal, setWriterFileModal] = useState(false);
@@ -1087,34 +1095,36 @@ const Scan_report_writer = () => {
   //모달 외부 클릭 시 닫힘
   const modalOutSide = useRef();
   useEffect(() => {
-    const clickOutside = (e) => {
-      // 모달이 열려 있고 모달의 바깥쪽을 눌렀을 때 창 닫기
-      if (
-        setSubmitModal &&
-        modalOutSide.current &&
-        !modalOutSide.current.contains(e.target)
-      ) {
-        setSubmitModal(false);
-      }
-      if (
-        setNoWriteModal &&
-        modalOutSide.current &&
-        !modalOutSide.current.contains(e.target)
-      ) {
-        setNoWriteModal(false);
-      }
-      if (
-        setDetailedModal &&
-        modalOutSide.current &&
-        !modalOutSide.current.contains(e.target)
-      ) {
-        setDetailedModal(false);
-      }
-    };
-    document.addEventListener("mousedown", clickOutside);
-    return () => {
-      document.removeEventListener("mousedown", clickOutside);
-    };
+    if (isLoad === false) {
+      const clickOutside = (e) => {
+        // 모달이 열려 있고 모달의 바깥쪽을 눌렀을 때 창 닫기
+        if (
+          setSubmitModal &&
+          modalOutSide.current &&
+          !modalOutSide.current.contains(e.target)
+        ) {
+          setSubmitModal(false);
+        }
+        if (
+          setNoWriteModal &&
+          modalOutSide.current &&
+          !modalOutSide.current.contains(e.target)
+        ) {
+          setNoWriteModal(false);
+        }
+        if (
+          setDetailedModal &&
+          modalOutSide.current &&
+          !modalOutSide.current.contains(e.target)
+        ) {
+          setDetailedModal(false);
+        }
+      };
+      document.addEventListener("mousedown", clickOutside);
+      return () => {
+        document.removeEventListener("mousedown", clickOutside);
+      };
+    }
   }, []);
 
   // 세부스캔 II 질문 요청을 했으면 버튼 안보임
@@ -1151,6 +1161,7 @@ const Scan_report_writer = () => {
     <>
       {questionInputs()}
       <Header title="SCANNer 리포트 업로드" img="./img/header_scan.png" />
+      {isLoad && <Loading />}
       <div className="Scan_top">
         <p>회원명 : {client_name}</p>
         <p className="Scan_top_boder_left">
@@ -1419,7 +1430,7 @@ const Scan_report_writer = () => {
                                 ? answerList.answer2_2
                                 : item.key === "2_3"
                                 ? answerList.answer2_3
-                                : item.key === "2_4"
+                                : answerList.answer2_4
                             }
                             disabled
                           />
@@ -1435,7 +1446,7 @@ const Scan_report_writer = () => {
                               item.key === "2_1"
                                 ? writerList.as_is2_1
                                 : item.key === "2_2"
-                                ? writerList.as_is1_2
+                                ? writerList.as_is2_2
                                 : item.key === "2_3"
                                 ? writerList.as_is2_3
                                 : writerList.as_is2_4
@@ -1623,7 +1634,7 @@ const Scan_report_writer = () => {
                                 ? answerList.answer3_2
                                 : item.key === "3_3"
                                 ? answerList.answer3_3
-                                : item.key === "3_4"
+                                : answerList.answer3_4
                             }
                             disabled
                           />
@@ -1827,7 +1838,7 @@ const Scan_report_writer = () => {
                                 ? answerList.answer4_2
                                 : item.key === "4_3"
                                 ? answerList.answer4_3
-                                : item.key === "4_4"
+                                : answerList.answer4_4
                             }
                             disabled
                           />
@@ -2031,7 +2042,7 @@ const Scan_report_writer = () => {
                                 ? answerList.answer5_2
                                 : item.key === "5_3"
                                 ? answerList.answer5_3
-                                : item.key === "5_4"
+                                : answerList.answer5_4
                             }
                             disabled
                           />

@@ -104,11 +104,11 @@ const Sidebar = () => {
           <div className="ISFC_title">
             <p>ISFC 스타트업 진단</p>
           </div>
-          {/* SCANNer */}
+          {/* SCANner */}
           <label htmlFor="Scan">
             <div className="Side_menu_title">
               <img src="./img/side_scan.png" alt="img" />
-              <p className="Slide_menu_nav">SCANNer</p>
+              <p className="Slide_menu_nav">SCANner</p>
               <img
                 className="menu_arrow Scan_arrow"
                 src="./img/side_icon.png"
@@ -153,7 +153,7 @@ const Sidebar = () => {
           <label htmlFor="">
             <div className="Side_menu_title">
               <img src="./img/side_create.png" alt="img" />
-              <p className="Slide_menu_nav">CREATer</p>
+              <p className="Slide_menu_nav">CREATor</p>
               <img
                 className="menu_arrow Create_arrow"
                 src="./img/side_icon.png"

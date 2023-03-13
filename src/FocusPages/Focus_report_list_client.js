@@ -6,7 +6,10 @@ const Focus_report_list_client = () => {
     <>
       <Header title="FOCUSer 리포트" img="./img/focus_icon.png" />
       <div className="Scan_all_inner">
-        <Focus_table table_name="report_client" url="/report_client" />
+        <Focus_table
+          table_name="report_client"
+          url="/Focus_report_list_client"
+        />
       </div>
     </>
   );

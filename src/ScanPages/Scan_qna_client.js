@@ -3,7 +3,9 @@ import React, { useState, useRef, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import Axios from "axios";
 import Header from "../Header";
+import Loading from "../Loading";
 const Scan_qna_client = () => {
+  const [isLoad, setIsLoad] = useState(false);
   // 01 콘텐츠
   const content1 = [
     {
@@ -198,13 +200,14 @@ const Scan_qna_client = () => {
   };
   // 저장, 제출하기
   const onClickSubmit = async (key) => {
+    console.log("클릭함");
     let state = "";
     if (key === "save") {
       state = "SCAN_C1";
       setSaveModal(true);
     } else if (key == "submit") {
       state = "SCAN_C2";
-      setTimeout(() => (window.location.href = "/Home_client"), 500);
+      setIsLoad(true);
     }
     const formDate = new FormData();
     formDate.append("file", clientFile ? clientFile : "");
@@ -215,7 +218,12 @@ const Scan_qna_client = () => {
     await Axios.post(
       "http://34.68.101.191:8000/post/Scan_qna_client",
       formDate
-    );
+    ).then((response) => {
+      console.log(response.data);
+      if (state === "SCAN_C2") {
+        window.location.href = "/Home_client";
+      }
+    });
   };
 
   // 답변 조회
@@ -242,39 +250,44 @@ const Scan_qna_client = () => {
   //모달 외부 클릭 시 닫힘
   const modalOutSide = useRef();
   useEffect(() => {
-    const clickOutside = (e) => {
-      // 모달이 열려 있고 모달의 바깥쪽을 눌렀을 때 창 닫기
-      if (
-        setSubmitModal &&
-        modalOutSide.current &&
-        !modalOutSide.current.contains(e.target)
-      ) {
-        setSubmitModal(false);
-      }
-      if (
-        setTitleNameModal &&
-        modalOutSide.current &&
-        !modalOutSide.current.contains(e.target)
-      ) {
-        setTitleNameModal(false);
-      }
-      if (
-        setNoWriteModal &&
-        modalOutSide.current &&
-        !modalOutSide.current.contains(e.target)
-      ) {
-        setNoWriteModal(false);
-      }
-    };
-    document.addEventListener("mousedown", clickOutside);
-    return () => {
-      document.removeEventListener("mousedown", clickOutside);
-    };
+    if (isLoad === false) {
+      const clickOutside = (e) => {
+        // 모달이 열려 있고 모달의 바깥쪽을 눌렀을 때 창 닫기
+        if (
+          setSubmitModal &&
+          modalOutSide.current &&
+          !modalOutSide.current.contains(e.target)
+        ) {
+          setSubmitModal(false);
+        }
+        if (
+          setTitleNameModal &&
+          modalOutSide.current &&
+          !modalOutSide.current.contains(e.target)
+        ) {
+          setTitleNameModal(false);
+        }
+        if (
+          setNoWriteModal &&
+          modalOutSide.current &&
+          !modalOutSide.current.contains(e.target)
+        ) {
+          setNoWriteModal(false);
+        }
+      };
+      document.addEventListener("mousedown", clickOutside);
+      return () => {
+        document.removeEventListener("mousedown", clickOutside);
+      };
+    } else {
+      return false;
+    }
   }, []);
-
+  console.log(isLoad);
   return (
     <>
       <Header title="SCANNer 기본스캔" img="./img/header_scan.png" />
+      {isLoad && <Loading />}
       <div className="Scan_qna_client_inner">
         <div className="Scan_qna_client_inner_header">
           <p>

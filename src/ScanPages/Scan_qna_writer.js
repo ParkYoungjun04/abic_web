@@ -5,7 +5,10 @@ import { Viewer, Worker } from "@react-pdf-viewer/core";
 import { getFilePlugin } from "@react-pdf-viewer/get-file";
 import Axios from "axios";
 import Header from "../Header";
+import Loading from "../Loading";
 const Scan_qna_writer = () => {
+  const [isLoad, setIsLoad] = useState(false);
+
   //pdf 저장
   const getFilePluginInstance = getFilePlugin();
   const { Download } = getFilePluginInstance;
@@ -199,12 +202,16 @@ const Scan_qna_writer = () => {
       setSaveModal(true);
     } else if (key === "submit") {
       state = "SCAN_C3";
-      window.location.href = "/Home_writer";
     }
     await Axios.put("http://34.68.101.191:8000/put/Scan_qna_writer", {
       business_name: business_name,
       state,
       questionList,
+    }).then((response) => {
+      console.log(response.data);
+      if (state === "SCAN_C3") {
+        window.location.href = "/Home_writer";
+      }
     });
   };
   console.log(question1);
@@ -218,27 +225,29 @@ const Scan_qna_writer = () => {
   //모달 외부 클릭 시 닫힘
   const modalOutSide = useRef();
   useEffect(() => {
-    const clickOutside = (e) => {
-      // 모달이 열려 있고 모달의 바깥쪽을 눌렀을 때 창 닫기
-      if (
-        setSubmitModal &&
-        modalOutSide.current &&
-        !modalOutSide.current.contains(e.target)
-      ) {
-        setSubmitModal(false);
-      }
-      if (
-        setNoWriteModal &&
-        modalOutSide.current &&
-        !modalOutSide.current.contains(e.target)
-      ) {
-        setNoWriteModal(false);
-      }
-    };
-    document.addEventListener("mousedown", clickOutside);
-    return () => {
-      document.removeEventListener("mousedown", clickOutside);
-    };
+    if (isLoad === false) {
+      const clickOutside = (e) => {
+        // 모달이 열려 있고 모달의 바깥쪽을 눌렀을 때 창 닫기
+        if (
+          setSubmitModal &&
+          modalOutSide.current &&
+          !modalOutSide.current.contains(e.target)
+        ) {
+          setSubmitModal(false);
+        }
+        if (
+          setNoWriteModal &&
+          modalOutSide.current &&
+          !modalOutSide.current.contains(e.target)
+        ) {
+          setNoWriteModal(false);
+        }
+      };
+      document.addEventListener("mousedown", clickOutside);
+      return () => {
+        document.removeEventListener("mousedown", clickOutside);
+      };
+    }
   }, []);
 
   useEffect(() => {
@@ -377,6 +386,7 @@ const Scan_qna_writer = () => {
   return (
     <>
       <Header title="SCANNer 세부스캔 질문 작성" img="./img/header_scan.png" />
+      {isLoad && <Loading />}
       <div className="Scan_top">
         <div className="Scan_qna_writer_file_viewer">
           {clientData.FILE_NAME && (

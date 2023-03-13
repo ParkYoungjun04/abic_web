@@ -3,7 +3,9 @@ import React, { useState, useRef, useEffect } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import Axios from "axios";
 import Header from "../Header";
+import Loading from "../Loading";
 const Focus_qna_2_writer = () => {
+  const [isLoad, setIsLoad] = useState(false);
   const location = useLocation({});
 
   const business_name = location.state.business_name;
@@ -1361,8 +1363,7 @@ const Focus_qna_2_writer = () => {
         writerState.STATE_NAME === "추가포커스 밸류체인 작성중"
           ? "FOCUS_A2"
           : "FOCUS_A4";
-
-      window.location.href = "/Home_writer";
+      setIsLoad(true);
     } else if (key === "report") {
       state = "FOCUS_A5";
     }
@@ -1371,6 +1372,11 @@ const Focus_qna_2_writer = () => {
       writerList,
       state,
       questionList,
+    }).then((response) => {
+      console.log(response.data);
+      if (state === "FOCUS_A2" || state === "FOCUS_A4") {
+        window.location.href = "/Home_writer";
+      }
     });
   };
   // 제출하기 클릭
@@ -1418,6 +1424,7 @@ const Focus_qna_2_writer = () => {
     <>
       {questionInputs()}
       <Header title="SCANNer 진행 현황" img="./img/focus_icon.png" />
+      {isLoad && <Loading />}
       <div className="Scan_top">
         <p>회원명 : {client_name}</p>
         <p className="Scan_top_boder_left">

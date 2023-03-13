@@ -30,8 +30,9 @@ const Scan_table = ({ table_name, url }) => {
       data: {
         index: key,
       },
+    }).then(() => {
+      window.location.href = url;
     });
-    window.location.href = url;
   };
   // ----------↓↓↓ 페이지 네이션 ↓↓↓----------
 
@@ -439,6 +440,8 @@ const Scan_table = ({ table_name, url }) => {
                   className={`${item.FONT_BOLD === 1 ? "table_bold" : ""}`}
                   key={index}
                 >
+                  <TableCell align="center">{item.BUSINESS_NAME}</TableCell>
+                  <TableCell align="center">{item.CREATED_DATE}</TableCell>
                   <TableCell align="center">
                     {item.STATE_NAME === "기본스캔 작성중" ||
                     (item.STATE_NAME === "기본스캔 제출완료" &&
@@ -451,16 +454,10 @@ const Scan_table = ({ table_name, url }) => {
                         to="/Scan_qna_viewer_client"
                         state={{ business_name: item.BUSINESS_NAME }}
                       >
-                        {item.BUSINESS_NAME}
+                        <p>{item.STATE_NAME}</p>
                       </NavLink>
-                    ) : (
-                      item.BUSINESS_NAME
-                    )}
-                  </TableCell>
-                  <TableCell align="center">{item.CREATED_DATE}</TableCell>
-                  <TableCell align="center">
-                    {item.STATE_NAME === "세부스캔 작성중" &&
-                    item.FONT_BOLD === 0 ? (
+                    ) : item.STATE_NAME === "세부스캔 작성중" &&
+                      item.FONT_BOLD === 0 ? (
                       <NavLink
                         onClick={() => {
                           readOnClick(item.BUSINESS_NAME, table_name.slice(-6));
@@ -468,7 +465,7 @@ const Scan_table = ({ table_name, url }) => {
                         to="/Scan_detail_qna_client"
                         state={{ clientData: item }}
                       >
-                        {item.STATE_NAME}
+                        <p>{item.STATE_NAME}</p>
                       </NavLink>
                     ) : item.STATE_NAME === "세부스캔 작성중" &&
                       item.FONT_BOLD === 1 ? (
@@ -479,7 +476,7 @@ const Scan_table = ({ table_name, url }) => {
                         to="/Scan_detail_start_client"
                         state={{ clientData: item }}
                       >
-                        {item.STATE_NAME}
+                        <p>{item.STATE_NAME}</p>
                       </NavLink>
                     ) : item.STATE_NAME === "세부스캔 제출완료" ? (
                       <NavLink
@@ -489,7 +486,7 @@ const Scan_table = ({ table_name, url }) => {
                         to="/Scan_detail_qna_client"
                         state={{ clientData: item }}
                       >
-                        {item.STATE_NAME}
+                        <p>{item.STATE_NAME}</p>
                       </NavLink>
                     ) : item.STATE_NAME === "세부스캔 II 작성중" ? (
                       <NavLink
@@ -499,7 +496,7 @@ const Scan_table = ({ table_name, url }) => {
                         to="/Scan_detail_qna_2_client"
                         state={{ clientData: item }}
                       >
-                        {item.STATE_NAME}
+                        <p>{item.STATE_NAME}</p>
                       </NavLink>
                     ) : item.STATE_NAME === "리포트" ? (
                       <NavLink
@@ -509,7 +506,7 @@ const Scan_table = ({ table_name, url }) => {
                         to="/Scan_report_client"
                         state={{ clientData: item }}
                       >
-                        {item.STATE_NAME}
+                        <p>{item.STATE_NAME}</p>
                       </NavLink>
                     ) : item.STATE_NAME === "세부스캔 질문 작성중" ? (
                       <NavLink
@@ -522,7 +519,7 @@ const Scan_table = ({ table_name, url }) => {
                           client_name: item.CLIENT_NAME,
                         }}
                       >
-                        {item.STATE_NAME}
+                        <p>{item.STATE_NAME}</p>
                       </NavLink>
                     ) : item.STATE_NAME === "세부스캔 질문 제출완료" ? (
                       <NavLink
@@ -535,7 +532,7 @@ const Scan_table = ({ table_name, url }) => {
                           client_name: item.CLIENT_NAME,
                         }}
                       >
-                        {item.STATE_NAME}
+                        <p>{item.STATE_NAME}</p>
                       </NavLink>
                     ) : item.STATE_NAME === "세부스캔 II 질문 작성중" ||
                       item.STATE_NAME === "세부스캔 II 질문 요청완료" ? (
@@ -549,7 +546,7 @@ const Scan_table = ({ table_name, url }) => {
                           client_name: item.CLIENT_NAME,
                         }}
                       >
-                        {item.STATE_NAME}
+                        <p>{item.STATE_NAME}</p>
                       </NavLink>
                     ) : item.STATE_NAME === "리포트 작성중" ||
                       item.STATE_NAME === "리포트 제출완료" ? (
@@ -563,10 +560,10 @@ const Scan_table = ({ table_name, url }) => {
                           client_name: item.CLIENT_NAME,
                         }}
                       >
-                        {item.STATE_NAME}
+                        <p>{item.STATE_NAME}</p>
                       </NavLink>
                     ) : (
-                      item.STATE_NAME
+                      <p>{item.STATE_NAME}</p>
                     )}
                   </TableCell>
                   {table_name.slice(-6) === "client" && (

@@ -6,7 +6,9 @@ import "@react-pdf-viewer/core/lib/styles/index.css";
 import "@react-pdf-viewer/print/lib/styles/index.css";
 import Axios from "axios";
 import Header from "../Header";
+import Loading from "../Loading";
 const Focus_report_writer = () => {
+  const [isLoad, setIsLoad] = useState(false);
   const location = useLocation({});
 
   const writerData = location.state.writerData;
@@ -870,7 +872,7 @@ const Focus_report_writer = () => {
       state = "FOCUS_C6";
       // FOCUS_A6
 
-      setTimeout(() => (window.location.href = "/Home_writer"), 500);
+      setIsLoad(true);
     } else if (key === "qna2") {
       if (writerData.QUESTION_TYPE === "b") {
         state = "FOCUS_A1";
@@ -887,7 +889,12 @@ const Focus_report_writer = () => {
     await Axios.put(
       "http://34.68.101.191:8000/put/Focus_report_writer",
       formDate
-    );
+    ).then((response) => {
+      console.log(response.data);
+      if (state === "FOCUS_C6") {
+        window.location.href = "/Home_writer";
+      }
+    });
   };
   //파일미리 보기
   const [writerFileModal, setWriterFileModal] = useState(false);
@@ -961,6 +968,7 @@ const Focus_report_writer = () => {
     <>
       {questionInputs()}
       <Header title="FOCUSer 리포트 업로드" img="./img/focus_icon.png" />
+      {isLoad && <Loading />}
       <div className="Scan_top">
         <p>회원명 : {client_name}</p>
         <p className="Scan_top_boder_left">

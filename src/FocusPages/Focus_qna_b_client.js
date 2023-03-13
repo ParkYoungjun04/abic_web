@@ -4,7 +4,10 @@ import React, { useState, useRef, useEffect } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import Header from "../Header";
 import Axios from "axios";
+import Loading from "../Loading";
+
 const Focus_qna_b_client = () => {
+  const [isLoad, setIsLoad] = useState(false);
   // 답변 리스트
   const [answerList, setAnswerList] = useState({
     business_name: "",
@@ -256,7 +259,7 @@ const Focus_qna_b_client = () => {
       setSaveModal(true);
     } else if (key === "submit") {
       state = "FOCUS_C3";
-      setTimeout(() => (window.location.href = "/Home_client"), 500);
+      setIsLoad(true);
     }
     const formDate = new FormData();
     formDate.append("file", files.file1_1);
@@ -319,7 +322,12 @@ const Focus_qna_b_client = () => {
     await Axios.post(
       "http://34.68.101.191:8000/post/Focus_qna_client",
       formDate
-    );
+    ).then((response) => {
+      console.log(response.data);
+      if (state === "FOCUS_C3") {
+        window.location.href = "/Home_client";
+      }
+    });
   };
   // 제출하기 클릭
   const [submitModal, setSubmitModal] = useState(false);
@@ -369,6 +377,7 @@ const Focus_qna_b_client = () => {
         title="FOCUSer 질문작성 - 밸류체인형 사업"
         img="./img/focus_icon.png"
       />
+      {isLoad && <Loading />}
       <div className="Focus_qna_b_client_inner">
         <div className="Focus_qna_client_inner_header">
           <p>

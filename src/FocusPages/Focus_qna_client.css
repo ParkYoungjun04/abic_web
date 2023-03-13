@@ -55,7 +55,7 @@
 }
 .Focus_qna_client_inner_box2_btn p {
   position: absolute;
-  top: 0;
+  top: 4%;
   right: 50%;
   transform: translate(50%, 105%);
   color: white;

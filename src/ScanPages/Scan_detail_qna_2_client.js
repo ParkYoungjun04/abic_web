@@ -4,7 +4,9 @@ import React, { useState, useRef, useEffect } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import Axios from "axios";
 import Header from "../Header";
+import Loading from "../Loading";
 const Scan_detail_qna_2_client = () => {
+  const [isLoad, setIsLoad] = useState(false);
   const location = useLocation({});
 
   // 고객 정보
@@ -1992,27 +1994,29 @@ const Scan_detail_qna_2_client = () => {
   //모달 외부 클릭 시 닫힘
   const modalOutSide = useRef();
   useEffect(() => {
-    const clickOutside = (e) => {
-      // 모달이 열려 있고 모달의 바깥쪽을 눌렀을 때 창 닫기
-      if (
-        setSubmitModal &&
-        modalOutSide.current &&
-        !modalOutSide.current.contains(e.target)
-      ) {
-        setSubmitModal(false);
-      }
-      if (
-        setNoWriteModal &&
-        modalOutSide.current &&
-        !modalOutSide.current.contains(e.target)
-      ) {
-        setNoWriteModal(false);
-      }
-    };
-    document.addEventListener("mousedown", clickOutside);
-    return () => {
-      document.removeEventListener("mousedown", clickOutside);
-    };
+    if (isLoad === false) {
+      const clickOutside = (e) => {
+        // 모달이 열려 있고 모달의 바깥쪽을 눌렀을 때 창 닫기
+        if (
+          setSubmitModal &&
+          modalOutSide.current &&
+          !modalOutSide.current.contains(e.target)
+        ) {
+          setSubmitModal(false);
+        }
+        if (
+          setNoWriteModal &&
+          modalOutSide.current &&
+          !modalOutSide.current.contains(e.target)
+        ) {
+          setNoWriteModal(false);
+        }
+      };
+      document.addEventListener("mousedown", clickOutside);
+      return () => {
+        document.removeEventListener("mousedown", clickOutside);
+      };
+    }
   }, []);
 
   // 제출하기 버튼 클릭 시 유효성 검사
@@ -2148,12 +2152,17 @@ const Scan_detail_qna_2_client = () => {
       setSaveModal(true);
     } else if (key == "submit") {
       state = "SCAN_C5";
-      window.location.href = "/Home_client";
+      setIsLoad(true);
     }
     await Axios.put("http://34.68.101.191:8000/put/Scan_detail_qna_2_client", {
       business_name: clientData.BUSINESS_NAME,
       answerList2,
       state,
+    }).then((response) => {
+      console.log(response.data);
+      if (state === "SCAN_C5") {
+        window.location.href = "/Home_client";
+      }
     });
   };
 
@@ -2161,6 +2170,7 @@ const Scan_detail_qna_2_client = () => {
     <>
       {questionInputs()}
       <Header title="SCANNer 세부스캔 II" img="./img/header_scan.png" />
+      {isLoad && <Loading />}
       <div className="Scan_top">
         <p>사업명 : {clientData.BUSINESS_NAME}</p>
         <p className="Scan_top_boder">제출일시 : {clientData.CREATED_DATE}</p>

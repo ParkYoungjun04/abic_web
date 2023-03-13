@@ -731,7 +731,24 @@ const Focus_report_view_client = () => {
 
     return arr;
   };
-
+  //모달 외부 클릭 시 닫힘
+  const modalOutSide = useRef();
+  useEffect(() => {
+    const clickOutside = (e) => {
+      // 모달이 열려 있고 모달의 바깥쪽을 눌렀을 때 창 닫기
+      if (
+        !qnaListModal &&
+        modalOutSide.current &&
+        !modalOutSide.current.contains(e.target)
+      ) {
+        setQnaListModal(false);
+      }
+    };
+    document.addEventListener("mousedown", clickOutside);
+    return () => {
+      document.removeEventListener("mousedown", clickOutside);
+    };
+  }, []);
   return (
     <>
       {questionInputs()}
@@ -769,7 +786,7 @@ const Focus_report_view_client = () => {
         )}
       </div>
       {qnaListModal && (
-        <div className="Scan_report_client_qna_list_inner">
+        <div ref={modalOutSide} className="Scan_report_client_qna_list_inner">
           <img
             className="Scan_report_client_qna_list_close"
             src="./img/close.png"
